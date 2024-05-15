@@ -1,0 +1,52 @@
+Getting Started
+===============
+
+```
+flist_T=$(echo "/projectsa/accord/SEAsia_R36/RESULTS/????/SEAsia_R36_5d_20??0101_20??1231_gridT.nc")
+flist_U=$(echo "/projectsa/accord/SEAsia_R36/RESULTS/????/SEAsia_R36_5d_20??0101_20??1231_gridU.nc")
+flist_V=$(echo "/projectsa/accord/SEAsia_R36/RESULTS/????/SEAsia_R36_5d_20??0101_20??1231_gridV.nc")
+```
+
+```
+micromamba activate coast-feb24
+cd /work/jelt/GitHub/NEMO_nc_slevel_viewer/
+````
+
+Look at T-grid files:
+
+```
+python NEMO_nc_slevel_viewer_dev.py CO9p2 "$flist_T"  --fig_fname_lab CO9p2 --thin 4
+```
+
+Add U and V:
+
+```
+python NEMO_nc_slevel_viewer_dev.py CO9p2 "$flist_T"  --fig_fname_lab CO9p2 --thin 4 --U_fname_lst "$flist_U" --V_fname_lst "$flist_V"
+```
+------
+
+To simply look at a series of T grid files, you should hopefully be able to go:
+ 
+```
+flist_CO9p2_T_1=$(echo "/scratch/hadjt/SSF/CO9p2/202212??T0000Z_25hourm.grid_T.nc")
+ 
+module load scitools/default-current
+python /home/h01/hadjt/workspace/python3/NEMO_nc_slevel_viewer/NEMO_nc_slevel_viewer_dev.py CO9p2 "$flist_CO9p2_T_1"  --fig_fname_lab CO9p2 --thin 4
+``` 
+ 
+If you want to add U and V files you’d run:
+
+```
+flist_CO9p2_T_1=$(echo "/scratch/hadjt/SSF/CO9p2/202212??T0000Z_25hourm.grid_T.nc")
+flist_CO9p2_U_1=$(echo "/scratch/hadjt/SSF/CO9p2/202212??T0000Z_25hourm.grid_U.nc")
+flist_CO9p2_V_1=$(echo "/scratch/hadjt/SSF/CO9p2/202212??T0000Z_25hourm.grid_V.nc")
+  
+module load scitools/default-current
+python /home/h01/hadjt/workspace/python3/NEMO_nc_slevel_viewer/NEMO_nc_slevel_viewer_dev.py CO9p2 "$flist_CO9p2_T_1"  --fig_fname_lab CO9p2 --thin 4 --U_fname_lst "$flist_CO9p2_U_1" --V_fname_lst "$flist_CO9p2_V_1"
+```
+ 
+At first I turn off the time series hovmuller info, as it take longer to load – click on the hov_time button at the top right if you want it on.
+ 
+If you want to have a look, see how you get on, and I’ll give you a demo if you think it will be useful.
+ 
+This will be beta testing, so let me know of any probs you have!
